@@ -4,6 +4,7 @@ import model.HttpUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import other.bean.Dao;
+import view.Index;
 
 import javax.annotation.Resource;
 
@@ -18,7 +19,7 @@ public class FecMain {
 
     public void begain() {
         try {
-//            ah.getBean(Index.class);
+            ah.getBean(Index.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
