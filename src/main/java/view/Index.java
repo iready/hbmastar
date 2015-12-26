@@ -16,8 +16,6 @@ import javax.swing.*;
 @Controller
 @Lazy
 public class Index extends JFrame {
-    @Resource
-    protected LoginService loginService;
     @Resource(name = "loginView")
     protected login loginView;
 
