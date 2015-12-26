@@ -1,7 +1,5 @@
 package other.utils;
 
-import org.springframework.stereotype.Service;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Enumeration;
@@ -33,5 +31,10 @@ public class SwingUtils {
         int x = (width - frame.getWidth()) / 2;
         int y = (height - frame.getHeight()) / 2;
         frame.setLocation(x, y);
+    }
+
+    public static void label_update_text(JLabel jLabel, String text) {
+        if (!jLabel.getText().equals(text))
+            jLabel.setText(text);
     }
 }

@@ -11,6 +11,6 @@ public class ResultProxy {
             ErrorMessage errorMessage = (ErrorMessage) result;
             throw new IllegalAccessError(errorMessage.getMessage());
         }
-        throw new RuntimeException("ÎŞ·¨½âÎö");
+        throw new RuntimeException("æ— æ³•è§£æ");
     }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import controller.APIOperation;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,16 @@ public class ViewContent {
     private JFrame frame;
     @Resource
     private ApplicationContext applicationContext;
+
+    private APIOperation apiOperation;
+
+    public APIOperation getApiOperation() {
+        return apiOperation;
+    }
+
+    public void setApiOperation(APIOperation apiOperation) {
+        this.apiOperation = apiOperation;
+    }
 
     public ApplicationContext getApplicationContext() {
         return applicationContext;

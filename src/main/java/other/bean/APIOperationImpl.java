@@ -1,45 +1,38 @@
 package other.bean;
 
+import com.alibaba.fastjson.JSON;
+import controller.APIOperation;
+import model.HttpUtils;
+import model.MyEntity;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import other.CMap;
+import other.entity.FecUser;
+import other.entity.api.*;
+import other.entity.api.OrderBookandTAS.BTC_CNY;
+import other.utils.EncryptUtil;
+
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.Resource;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import com.alibaba.fastjson.JSON;
-
-import controller.APIOperation;
-import model.HttpUtils;
-import model.MyEntity;
-import other.CMap;
-import other.entity.FecUser;
-import other.entity.api.ErrorMessage;
-import other.entity.api.Get_account_info;
-import other.entity.api.Result;
-import other.entity.api.Ticker_btc_json;
-import other.entity.api.Trading;
-import other.entity.api.OrderBookandTAS.BTC_CNY;
-import other.utils.EncryptUtil;
-
 @Component
 @Scope("prototype")
 public class APIOperationImpl implements APIOperation {
-    private String ACCESS_KEY;
     private final String API_URL = "https://api.huobi.com/apiv3";
-    @Resource
-    Dao dao;
     public HttpContext httpContext = new BasicHttpContext();
     @Resource
+    Dao dao;
+    @Resource
     HttpUtils httpUtils;
+    private String ACCESS_KEY;
     private String SECRET_KEY;
+    private String user_id;
 
 
     public Result buy(String amount, String exprectPrice, String trade_password) throws IOException {
@@ -135,7 +128,12 @@ public class APIOperationImpl implements APIOperation {
         }
     }
 
+    public String getUserId() {
+        return this.user_id;
+    }
+
     public void setUserId(String userId) {
+        this.user_id = userId;
         List<FecUser> fecUser = dao.find("from FecUser where userId=:userId", new CMap().put("userId", userId), new MyEntity<FecUser>());
         FecUser user = fecUser.get(0);
         ACCESS_KEY = user.getAccess_key();
@@ -146,11 +144,11 @@ public class APIOperationImpl implements APIOperation {
         return parseJson(httpUtils.SendGet("http://api.huobi.com/staticmarket/ticker_btc_json.js", httpContext), Ticker_btc_json.class);
     }
 
-    private <T> T parseJson(String json, Class<T> class1) {
+    private Result parseJson(String json, Class<? extends Result> class1) {
         ErrorMessage errorMessage = JSON.parseObject(json, ErrorMessage.class);
         if (errorMessage.getCode() == null && errorMessage.getMessage() == null && errorMessage.getMsg() == null) {
             return JSON.parseObject(json, class1);
         }
-        return class1.cast(errorMessage);
+        return errorMessage.getClass().cast(errorMessage);
     }
 }
