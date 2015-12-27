@@ -3,7 +3,6 @@ package view;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import other.utils.SwingUtils;
-import service.LoginService;
 import view.sun.login;
 
 import javax.annotation.PostConstruct;

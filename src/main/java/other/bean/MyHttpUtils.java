@@ -1,12 +1,6 @@
 package other.bean;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
+import model.HttpUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -17,9 +11,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
-
-import model.HttpUtils;
 import other.utils.DataUtils;
+
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Map;
 
 @Component
 public class MyHttpUtils implements HttpUtils {
@@ -63,7 +61,7 @@ public class MyHttpUtils implements HttpUtils {
             HttpResponse response = httpClient.execute(get, httpContext);
             return response;
         } else
-            throw new RuntimeException(new URISyntaxException(Url, "·Ç·¨URI"));
+            throw new RuntimeException(new URISyntaxException(Url, "ï¿½Ç·ï¿½URI"));
     }
 
     @Override
@@ -95,6 +93,6 @@ public class MyHttpUtils implements HttpUtils {
             HttpResponse response = httpClient.execute(post, httpContext);
             return response;
         } else
-            throw new RuntimeException(new URISyntaxException(Url, "·Ç·¨URI"));
+            throw new RuntimeException(new URISyntaxException(Url, "ï¿½Ç·ï¿½URI"));
     }
 }

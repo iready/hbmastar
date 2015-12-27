@@ -2,42 +2,44 @@ package other.utils;
 
 import java.security.MessageDigest;
 import java.util.Map;
-public class EncryptUtil {
-	public static String getSign(Map<String, Object> map) {
-		return MD5(format(map)).toLowerCase();
-	}
-	public final static String format(Map<String, Object> map) {
-		StringBuilder inputStr = new StringBuilder();
-		for (Map.Entry<String, Object> me : map.entrySet()) {
-			inputStr.append(me.getKey()).append("=").append(me.getValue()).append("&");
-		}
-		return inputStr.substring(0, inputStr.length() - 1);
-	}
 
-	public final static String MD5(String s) {
-		char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-		try {
-			byte[] btInput = s.getBytes("utf-8");
-			// »ñµÃMD5ÕªÒªËã·¨µÄ MessageDigest ¶ÔÏó
-			MessageDigest mdInst = MessageDigest.getInstance("MD5");
-			// Ê¹ÓÃÖ¸¶¨µÄ×Ö½Ú¸üÐÂÕªÒª
-			mdInst.update(btInput);
-			// »ñµÃÃÜÎÄ
-			byte[] md = mdInst.digest();
-			// °ÑÃÜÎÄ×ª»»³ÉÊ®Áù½øÖÆµÄ×Ö·û´®ÐÎÊ½
-			int j = md.length;
-			char str[] = new char[j * 2];
-			int k = 0;
-			for (int i = 0; i < j; i++) {
-				byte byte0 = md[i];
-				str[k++] = hexDigits[byte0 >>> 4 & 0xf];
-				str[k++] = hexDigits[byte0 & 0xf];
-			}
-			return new String(str);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+public class EncryptUtil {
+    public static String getSign(Map<String, Object> map) {
+        return MD5(format(map)).toLowerCase();
+    }
+
+    public final static String format(Map<String, Object> map) {
+        StringBuilder inputStr = new StringBuilder();
+        for (Map.Entry<String, Object> me : map.entrySet()) {
+            inputStr.append(me.getKey()).append("=").append(me.getValue()).append("&");
+        }
+        return inputStr.substring(0, inputStr.length() - 1);
+    }
+
+    public final static String MD5(String s) {
+        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+        try {
+            byte[] btInput = s.getBytes("utf-8");
+            // ï¿½ï¿½ï¿½MD5ÕªÒªï¿½ã·¨ï¿½ï¿½ MessageDigest ï¿½ï¿½ï¿½ï¿½
+            MessageDigest mdInst = MessageDigest.getInstance("MD5");
+            // Ê¹ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ú¸ï¿½ï¿½ï¿½ÕªÒª
+            mdInst.update(btInput);
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            byte[] md = mdInst.digest();
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Ê®ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+            int j = md.length;
+            char str[] = new char[j * 2];
+            int k = 0;
+            for (int i = 0; i < j; i++) {
+                byte byte0 = md[i];
+                str[k++] = hexDigits[byte0 >>> 4 & 0xf];
+                str[k++] = hexDigits[byte0 & 0xf];
+            }
+            return new String(str);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }

@@ -1,41 +1,46 @@
 package other.entity.api;
 
-import java.io.Serializable;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
+import java.io.Serializable;
 
 @Entity
 @Table
 public class ErrorMessage implements Serializable, Result {
 
-	public Integer code;// ´íÎó´úÂë
-	public String message;// ´íÎóÏûÏ¢ÄÚÈİ
-	public String msg;// ´íÎóÏûÏ¢ÄÚÈİ£¨¼æÈİ¾É°æ±¾£©
-	@Id
-	@GeneratedValue(generator = "paymentableGenerator")
-	@GenericGenerator(name = "paymentableGenerator", strategy = "assigned")
-	public Integer getCode() {
-		return code;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public String getMsg() {
-		return msg;
-	}
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
+    public Integer code;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public String message;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
+    public String msg;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½İ£ï¿½ï¿½ï¿½ï¿½İ¾É°æ±¾ï¿½ï¿½
+
+    @Id
+    @GeneratedValue(generator = "paymentableGenerator")
+    @GenericGenerator(name = "paymentableGenerator", strategy = "assigned")
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
 }

@@ -23,7 +23,7 @@ public class ViewContent {
 
     private APIOperation apiOperation;
 
-    private Map<String,JFrame> jFrameMap=new HashMap<String, JFrame>();
+    private Map<String, JFrame> jFrameMap = new HashMap<String, JFrame>();
 
     public APIOperation getApiOperation() {
         return apiOperation;

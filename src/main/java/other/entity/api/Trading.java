@@ -1,19 +1,23 @@
 package other.entity.api;
 
 public class Trading implements Result {
-	public String result;// �ɹ�״̬
-	public String id;// ί��id
-	public String getResult() {
-		return result;
-	}
-	public void setResult(String result) {
-		this.result = result;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String result;// �ɹ�״̬
+    public String id;// ί��id
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
 }

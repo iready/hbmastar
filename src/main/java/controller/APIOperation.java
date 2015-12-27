@@ -6,20 +6,48 @@ import other.entity.api.Result;
 import java.io.IOException;
 
 public interface APIOperation {
-    public Result buy(String amount, String exprectPrice, String trade_password) throws ClientProtocolException, IOException;
+    Result buy(String amount, String exprectPrice, String trade_password) throws IOException;
 
-    public Result get_account_info() throws ClientProtocolException, IOException;
+    /**
+     * 交易函数
+     *
+     * @param config 为一个长度为4的数组 第一个参数代表的是 百分比 第二个代表的是买入还是卖出 第三个是按市价还是按委托价 第四个代表的是委托的价格
+     * @return
+     */
+    Result buyAndSell(String[] config);
 
-    public Result get_orders();
+    /**
+     * 获取个人资产信息
+     *
+     * @return
+     * @throws ClientProtocolException
+     * @throws IOException
+     */
+    Result get_account_info() throws IOException;
 
-    public Result Order_BookandTAS() throws ClientProtocolException, IOException;
+    /**
+     * 获取委托详情
+     *
+     * @return
+     */
+    Result get_orders();
 
-    public Result sell(String amount, String exprectPrice, String trade_password) throws ClientProtocolException, IOException;
+    Result Order_BookandTAS() throws IOException;
 
-    public String getUserId();
+    Result sell(String amount, String exprectPrice, String trade_password) throws IOException;
 
-    public void setUserId(String userId);
+    String getUserId();
 
-    public Result TransactionReal() throws ClientProtocolException, IOException;
+    void setUserId(String userId);
+
+    /**
+     * 实时行情
+     *
+     * @return
+     * @throws ClientProtocolException
+     * @throws IOException
+     */
+    Result TransactionReal() throws IOException;
+
 
 }

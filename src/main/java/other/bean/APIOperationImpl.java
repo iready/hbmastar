@@ -13,13 +13,12 @@ import other.CMap;
 import other.entity.FecUser;
 import other.entity.api.*;
 import other.entity.api.OrderBookandTAS.BTC_CNY;
+import other.utils.Arg;
 import other.utils.EncryptUtil;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Component
 @Scope("prototype")
@@ -35,10 +34,10 @@ public class APIOperationImpl implements APIOperation {
     private String user_id;
 
 
-    public Result buy(String amount, String exprectPrice, String trade_password) throws IOException {
+    public Result base_buy_sell(String amount, String exprectPrice, String trade_password, String type) throws IOException {
         String methodName;
         if (StringUtils.isNotEmpty(exprectPrice) && !"0".equals(exprectPrice)) {
-            methodName = "buy";
+            methodName = type;
             CMap cMap = getUsurlCMap(methodName).put("coin_type", "1").put("amount", amount).put("price", exprectPrice);
             cMap.put("sign", EncryptUtil.getSign(cMap)).remove("secret_key");
             if (StringUtils.isNotEmpty(trade_password))
@@ -47,18 +46,8 @@ public class APIOperationImpl implements APIOperation {
             String resultString = httpUtils.SendGet(urlString, httpContext);
             return parseJson(resultString, Trading.class);
         } else {
-            methodName = "buy_market";
-            Matcher matcher = Pattern.compile("(\\d+)(\\.\\d{0,2})?").matcher(amount);
-            StringBuilder sBuilder = new StringBuilder();
-            if (matcher.find()) {
-                if (StringUtils.isNotBlank(matcher.group(1))) {
-                    sBuilder.append(matcher.group(1));
-                    if (StringUtils.isNotBlank(matcher.group(2))) {
-                        sBuilder.append(matcher.group(2));
-                    }
-                }
-            }
-            CMap cMap = getUsurlCMap(methodName).put("coin_type", "1").put("amount", sBuilder.toString());
+            methodName = type + "_market";
+            CMap cMap = getUsurlCMap(methodName).put("coin_type", "1").put("amount", amount);
             cMap.put("sign", EncryptUtil.getSign(cMap)).remove("secret_key");
             if (StringUtils.isNotEmpty(trade_password))
                 cMap.put("trade_password", trade_password);
@@ -66,6 +55,24 @@ public class APIOperationImpl implements APIOperation {
             String resultString = httpUtils.SendGet(urlString, httpContext);
             return parseJson(resultString, Trading.class);
         }
+    }
+
+    public Result buy(String amount, String exprectPrice, String trade_password) throws IOException {
+        return base_buy_sell(amount, exprectPrice, trade_password, "buy");
+    }
+
+    /**
+     * 交易函数
+     *
+     * @param config 为一个长度为5的数组 第一个参数代表的是 百分比 第二个代表的是买入还是卖出 第三个是按市价还是按委托价 第四个代表的是委托的价格 第5个为交易密码
+     * @return
+     */
+    public Result buyAndSell(String[] config) {
+        if (Arg.numBetween(config[0], 0, 101) && Arg.numBetween(config[1], -1, 2) && Arg.numBetween(config[2], -1, 2) && (config[2].equals("0"))) {
+//计算数量
+            
+        }
+        return null;
     }
 
     public Result get_account_info() throws IOException {
@@ -96,36 +103,7 @@ public class APIOperationImpl implements APIOperation {
     }
 
     public Result sell(String amount, String exprectPrice, String trade_password) throws IOException {
-        String methodName;
-        if (StringUtils.isNotEmpty(exprectPrice) && !"0".equals(exprectPrice)) {
-            methodName = "buy";
-            CMap cMap = getUsurlCMap(methodName).put("coin_type", "1").put("amount", amount).put("price", exprectPrice);
-            cMap.put("sign", EncryptUtil.getSign(cMap)).remove("secret_key");
-            if (StringUtils.isNotEmpty(trade_password))
-                cMap.put("trade_password", trade_password);
-            String urlString = API_URL + "?" + EncryptUtil.format(cMap);
-            String resultString = httpUtils.SendGet(urlString, httpContext);
-            return parseJson(resultString, Trading.class);
-        } else {
-            methodName = "sell_market";
-            Matcher matcher = Pattern.compile("(\\d+)(\\.\\d{0,4})?").matcher(amount);
-            StringBuilder sBuilder = new StringBuilder();
-            if (matcher.find()) {
-                if (StringUtils.isNotBlank(matcher.group(1))) {
-                    sBuilder.append(matcher.group(1));
-                    if (StringUtils.isNotBlank(matcher.group(2))) {
-                        sBuilder.append(matcher.group(2));
-                    }
-                }
-            }
-            CMap cMap = getUsurlCMap(methodName).put("coin_type", "1").put("amount", sBuilder.toString());
-            cMap.put("sign", EncryptUtil.getSign(cMap)).remove("secret_key");
-            if (StringUtils.isNotEmpty(trade_password))
-                cMap.put("trade_password", trade_password);
-            String urlString = API_URL + "?" + EncryptUtil.format(cMap);
-            String resultString = httpUtils.SendGet(urlString, httpContext);
-            return parseJson(resultString, Result.class);
-        }
+        return base_buy_sell(amount, exprectPrice, trade_password, "sell");
     }
 
     public String getUserId() {
