@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.sun.buyAndSell">
   <grid id="27dc6" binding="content" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="543" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -22,6 +22,8 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <hideActionText value="false"/>
+          <selected value="false"/>
           <text value="25%"/>
         </properties>
       </component>
@@ -67,6 +69,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <selected value="false"/>
           <text value="买入"/>
         </properties>
       </component>
@@ -104,6 +107,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <selected value="false"/>
           <text value="委托"/>
         </properties>
       </component>
@@ -115,15 +119,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <enabled value="true"/>
+          <enabled value="false"/>
+          <visible value="true"/>
         </properties>
-      </component>
-      <component id="a564e" class="javax.swing.JSpinner" binding="spinner1" default-binding="true">
-        <constraints>
-          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties/>
       </component>
       <component id="d455b" class="javax.swing.JButton" binding="submit">
         <constraints>
@@ -134,15 +132,32 @@
           <text value="确定"/>
         </properties>
       </component>
+      <component id="519e6" class="javax.swing.JRadioButton" binding="othersradion">
+        <constraints>
+          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="其他"/>
+        </properties>
+      </component>
+      <component id="29459" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+        <constraints>
+          <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <preferredSize width="35" height="25"/>
+          <text value="0"/>
+          <visible value="true"/>
+        </properties>
+      </component>
     </children>
   </grid>
   <buttonGroups>
-    <group name="transbfb">
-      <member id="2c7da"/>
-      <member id="8c32c"/>
-      <member id="4a0cf"/>
-      <member id="7dde7"/>
-    </group>
     <group name="transType">
       <member id="e525a"/>
       <member id="510bc"/>
@@ -150,6 +165,13 @@
     <group name="transMethod">
       <member id="e3cb4"/>
       <member id="13017"/>
+    </group>
+    <group name="bg">
+      <member id="2c7da"/>
+      <member id="8c32c"/>
+      <member id="4a0cf"/>
+      <member id="7dde7"/>
+      <member id="519e6"/>
     </group>
   </buttonGroups>
 </form>

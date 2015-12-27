@@ -8,8 +8,8 @@ import other.utils.SwingUtils;
 import service.LoginService;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -26,8 +26,8 @@ public class login {
         final LoginService loginService = viewContent.getApplicationContext().getBean(LoginService.class);
         final JFrame frame = viewContent.getFrame();
         username.setText("13299266512");
-        login.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
+        login.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 Result<List<FecUser>> bool = loginService.validate(username.getText());
                 if (!bool.isResult()) {
                     JOptionPane.showMessageDialog(null, "没有此用户", "警告", JOptionPane.WARNING_MESSAGE);
@@ -39,6 +39,7 @@ public class login {
                     SwingUtils.window_replace(frame, real_data.getContent(), "main");
                 }
             }
+
         });
     }
 

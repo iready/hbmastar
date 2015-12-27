@@ -22,6 +22,7 @@ public class SwingUtils {
         return null;
     }
 
+
     public static void window_centered(JFrame frame) {
         frame.pack();
         Toolkit kit = Toolkit.getDefaultToolkit();

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.swing.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Yuquan Zou on 2015/12/26.
@@ -20,6 +22,8 @@ public class ViewContent {
     private ApplicationContext applicationContext;
 
     private APIOperation apiOperation;
+
+    private Map<String,JFrame> jFrameMap=new HashMap<String, JFrame>();
 
     public APIOperation getApiOperation() {
         return apiOperation;

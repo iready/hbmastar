@@ -10,9 +10,8 @@ import other.entity.api.Ticker_btc_json;
 import other.utils.SwingUtils;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -54,10 +53,9 @@ public class Real_data {
         this.viewContent = viewContent;
         api = viewContent.getApiOperation();
         creatUIRun();
-        openTrans.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+        openTrans.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new buyAndSell(viewContent);
             }
         });
     }
