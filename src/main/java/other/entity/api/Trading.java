@@ -1,8 +1,8 @@
 package other.entity.api;
 
 public class Trading implements Result {
-    public String result;// �ɹ�״̬
-    public String id;// ί��id
+    public String result;// 委托结果
+    public String id;// 委托id
 
     public String getResult() {
         return result;

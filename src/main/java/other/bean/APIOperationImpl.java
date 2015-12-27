@@ -2,6 +2,7 @@ package other.bean;
 
 import com.alibaba.fastjson.JSON;
 import controller.APIOperation;
+import controller.ResultProxy;
 import model.HttpUtils;
 import model.MyEntity;
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +19,7 @@ import other.utils.EncryptUtil;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Component
@@ -68,9 +70,32 @@ public class APIOperationImpl implements APIOperation {
      * @return
      */
     public Result buyAndSell(String[] config) {
-        if (Arg.numBetween(config[0], 0, 101) && Arg.numBetween(config[1], -1, 2) && Arg.numBetween(config[2], -1, 2) && (config[2].equals("0"))) {
+        if (Arg.numBetween(config[0], 0, 101) && Arg.numBetween(config[1], -1, 2) && Arg.numBetween(config[2], -1, 2)) {
 //计算数量
-            
+            try {
+                BigDecimal persent = new BigDecimal(config[0]).divide(new BigDecimal(100));
+                Get_account_info gai = ResultProxy.proxy(get_account_info(), Get_account_info.class);
+                if (config[1].equals("0")) {
+                    String amout = null;
+                    String pricee = null;
+                    if (config[2].equals("0") && StringUtils.isNotEmpty(config[3])) {
+                        pricee = config[3];
+                        amout = new BigDecimal(gai.getAvailable_cny_display()).multiply(persent).divide(new BigDecimal(pricee), 4, BigDecimal.ROUND_DOWN).toString();
+                    } else {
+                        amout = new BigDecimal(gai.getAvailable_cny_display()).multiply(persent).setScale(2, BigDecimal.ROUND_DOWN).toString();
+                    }
+                    return buy(amout, pricee, config[4]);
+                } else if (config[1].equals("1")) {
+                    String amout = new BigDecimal(gai.getAvailable_btc_display()).multiply(persent).setScale(4, BigDecimal.ROUND_DOWN).toString();
+                    String pricee = null;
+                    if (config[2].equals("0")) {
+                        pricee = config[3];
+                    }
+                    return sell(amout, pricee, config[4]);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }

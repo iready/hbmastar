@@ -29,7 +29,7 @@ public class buyAndSell {
     private JButton submit;
     private JRadioButton othersradion;
     private JTextField textField2;
-    private String value[] = new String[4];
+    private String value[] = new String[5];
 
     public buyAndSell(final ViewContent viewContent) {
         JFrame jFrame = new JFrame("交易");
@@ -67,6 +67,7 @@ public class buyAndSell {
             public void actionPerformed(ActionEvent e) {
                 for (String s : value)
                     System.out.println(s);
+                viewContent.getApiOperation().buyAndSell(value);
             }
         });
         textField1.addFocusListener(new FocusAdapter() {
