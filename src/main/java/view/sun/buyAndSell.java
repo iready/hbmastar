@@ -1,6 +1,9 @@
 package view.sun;
 
+import controller.ResultProxy;
 import model.ViewContent;
+import other.entity.api.Result;
+import other.entity.api.Trading;
 import other.utils.SwingUtils;
 
 import javax.swing.*;
@@ -29,6 +32,9 @@ public class buyAndSell {
     private JButton submit;
     private JRadioButton othersradion;
     private JTextField textField2;
+    private JLabel L42;
+    private JTextArea textArea1;
+    private JScrollPane jsc;
     private String value[] = new String[5];
 
     public buyAndSell(final ViewContent viewContent) {
@@ -65,29 +71,17 @@ public class buyAndSell {
         weituo.addActionListener(listener2);
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                for (String s : value)
-                    System.out.println(s);
-                viewContent.getApiOperation().buyAndSell(value);
-            }
-        });
-        textField1.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                super.focusGained(e);
-                System.out.println(1);
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                super.focusLost(e);
-                System.out.println(2);
+                Result result = viewContent.getApiOperation().buyAndSell(value);
+                if (result != null) {
+                    Trading trading = ResultProxy.proxy(result, Trading.class,textArea1);
+                    SwingUtils.appendText(textArea1, trading.getResult()+"订单Id为："+trading.getId());
+                }
             }
         });
         othersradion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 textField2.setEnabled(true);
                 value[0] = textField2.getText();
-
             }
         });
         ActionListener listener = new ActionListener() {

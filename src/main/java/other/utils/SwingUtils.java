@@ -1,6 +1,7 @@
 package other.utils;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.util.Enumeration;
 
@@ -9,6 +10,11 @@ public class SwingUtils {
         jFrame.setTitle(title);
         jFrame.setContentPane(nextJPanel);
         jFrame.pack();
+    }
+
+    public static void appendText(JTextComponent jcomponent, String str) {
+        StringBuilder stringBuilder = new StringBuilder(jcomponent.getText()).append("\n").append(str);
+        jcomponent.setText(stringBuilder.toString());
     }
 
     public static String getTextFromSelectedButtonGroup(ButtonGroup bg) {

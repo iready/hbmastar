@@ -123,15 +123,6 @@
           <visible value="true"/>
         </properties>
       </component>
-      <component id="d455b" class="javax.swing.JButton" binding="submit">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="确定"/>
-        </properties>
-      </component>
       <component id="519e6" class="javax.swing.JRadioButton" binding="othersradion">
         <constraints>
           <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -153,6 +144,45 @@
           <preferredSize width="35" height="25"/>
           <text value="0"/>
           <visible value="true"/>
+        </properties>
+      </component>
+      <scrollpane id="416d" binding="jsc">
+        <constraints>
+          <grid row="3" column="1" row-span="5" col-span="6" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="true"/>
+          <horizontalScrollBarPolicy value="30"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="4a248" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+            <constraints/>
+            <properties>
+              <autoscrolls value="true"/>
+              <editable value="false"/>
+              <rows value="6"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="ff714" class="javax.swing.JLabel" binding="L42">
+        <constraints>
+          <grid row="3" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="交易状态："/>
+        </properties>
+      </component>
+      <component id="d455b" class="javax.swing.JButton" binding="submit">
+        <constraints>
+          <grid row="8" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="确定"/>
         </properties>
       </component>
     </children>
