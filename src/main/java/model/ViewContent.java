@@ -13,12 +13,8 @@ import java.util.Map;
 /**
  * Created by Yuquan Zou on 2015/12/26.
  */
-@Component
-@Lazy
 public class ViewContent {
-    @Resource
-    private JFrame frame;
-    @Resource
+    private JFrame frame; //主体
     private ApplicationContext applicationContext;
 
     private APIOperation apiOperation;
@@ -47,5 +43,13 @@ public class ViewContent {
 
     public void setFrame(JFrame frame) {
         this.frame = frame;
+    }
+
+    public Map<String, JFrame> getjFrameMap() {
+        return jFrameMap;
+    }
+
+    public void setjFrameMap(Map<String, JFrame> jFrameMap) {
+        this.jFrameMap = jFrameMap;
     }
 }

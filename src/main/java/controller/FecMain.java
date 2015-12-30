@@ -1,25 +1,31 @@
 package controller;
 
-import model.HttpUtils;
+import model.ViewContent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import other.bean.Dao;
-import view.Index;
+import other.utils.SwingUtils;
+import view.sun.login;
 
 import javax.annotation.Resource;
+import javax.swing.*;
 
 @Service
 public class FecMain {
-    @Resource
-    HttpUtils httpUtils;
-    @Resource
-    Dao dao;
     @Resource
     ApplicationContext ah;
 
     public void begain() {
         try {
-            ah.getBean(Index.class);
+            JFrame frame=new JFrame("main");
+            ViewContent viewContent=new ViewContent();
+            viewContent.setApplicationContext(ah);
+            viewContent.setFrame(frame);
+            viewContent.setApiOperation(ah.getBean(APIOperation.class));
+            login login=new login(viewContent);
+            SwingUtils.window_replace(frame, login.getLoginJpanel(), "login");
+            SwingUtils.window_centered(frame);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }

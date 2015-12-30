@@ -73,7 +73,4 @@
             </props>
         </property>
     </bean>
-    <bean id="loginView" class="view.sun.login" lazy-init="true">
-        <constructor-arg ref="viewContent"/>
-    </bean>
 </beans>
