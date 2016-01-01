@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class Entrust {
     final APIOperation api;
+    String[] headers;
     private JPanel content;
     private JLabel L1;
     private JButton refresh;
@@ -36,7 +37,11 @@ public class Entrust {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Get_orders> list = api.get_orders();
-                    data_handle(list);
+                    EntrustModel model = (EntrustModel) entable.getModel();
+                    model.setDataVector(data_handle(list), headers);
+                    operaCancle operaCancle = new operaCancle(api);
+                    entable.getColumnModel().getColumn(5).setCellEditor(operaCancle);
+                    entable.getColumnModel().getColumn(5).setCellRenderer(operaCancle);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -46,7 +51,7 @@ public class Entrust {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        String[] headers = {"id", "类型", "委托价格", "委托数量", "委托时间", "委托操作"};
+        headers = new String[]{"id", "类型", "委托价格", "委托数量", "委托时间", "委托操作"};
         try {
             entable = new JTable(new EntrustModel(data_handle(api.get_orders()), headers));
             operaCancle operaCancle = new operaCancle(api);

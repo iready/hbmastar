@@ -3,6 +3,7 @@ package model.view.tabel;
 import controller.APIOperation;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;

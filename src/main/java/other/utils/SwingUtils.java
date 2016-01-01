@@ -1,11 +1,17 @@
 package other.utils;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.util.Enumeration;
 
 public class SwingUtils {
+    public static void table_clean(JTable table){
+        DefaultTableModel tableModel = (DefaultTableModel) table
+                .getModel();
+        tableModel.setRowCount(0);
+    }
     public static void window_replace(JFrame jFrame, JPanel nextJPanel, String title) {
         jFrame.setTitle(title);
         jFrame.setContentPane(nextJPanel);
