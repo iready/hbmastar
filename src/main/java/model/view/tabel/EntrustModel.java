@@ -5,13 +5,13 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Created by Yuquan Zou on 2016/1/1.
  */
-public class Entrust extends DefaultTableModel {
-    public Entrust(Object[][] data, Object[] columnNames) {
+public class EntrustModel extends DefaultTableModel {
+    public EntrustModel(Object[][] data, Object[] columnNames) {
         super(data, columnNames);
     }
 
     @Override
     public boolean isCellEditable(int row, int column) {
-        return false;
+        return true;
     }
 }

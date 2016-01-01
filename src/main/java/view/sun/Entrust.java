@@ -2,6 +2,8 @@ package view.sun;
 
 import controller.APIOperation;
 import model.ViewContent;
+import model.view.tabel.EntrustModel;
+import model.view.tabel.operaCancle;
 import other.entity.api.Get_orders;
 import other.utils.SwingUtils;
 
@@ -46,14 +48,17 @@ public class Entrust {
         // TODO: place custom component creation code here
         String[] headers = {"id", "类型", "委托价格", "委托数量", "委托时间", "委托操作"};
         try {
-            entable = new JTable(new model.view.tabel.Entrust(data_handle(api.get_orders()), headers));
+            entable = new JTable(new EntrustModel(data_handle(api.get_orders()), headers));
+            operaCancle operaCancle = new operaCancle(api);
+            entable.getColumnModel().getColumn(5).setCellEditor(operaCancle);
+            entable.getColumnModel().getColumn(5).setCellRenderer(operaCancle);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private Object[][] data_handle(List<Get_orders> orderses) {
-        int l = 6;
+        int l = 5;
         Object[][] objects = new Object[orderses.size()][l];
         for (int i = 0; i < orderses.size(); i++) {
             Get_orders get_orders = orderses.get(i);
@@ -63,7 +68,6 @@ public class Entrust {
             object[2] = get_orders.getOrder_price();
             object[3] = get_orders.getOrder_amount();
             object[4] = get_orders.getOrder_time();
-            object[5] = new JButton("撤销");
             objects[i] = object;
         }
         return objects;

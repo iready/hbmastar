@@ -104,8 +104,6 @@ public class Real_data {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        System.out.println("12");
-
     }
 
     {

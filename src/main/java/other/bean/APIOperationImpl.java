@@ -119,6 +119,16 @@ public class APIOperationImpl implements APIOperation {
         return list;
     }
 
+    public Result cancel_order(String id) throws IOException {
+        String methodName = "cancel_order";
+        CMap cMap = new CMap().put("access_key", ACCESS_KEY).put("coin_type", "1").put("created", getNowTime()).put("id", id).put("method", methodName).put("secret_key", SECRET_KEY);
+        cMap.put("sign", EncryptUtil.getSign(cMap)).remove("secret_key");
+        String urlString = API_URL + "?" + EncryptUtil.format(cMap);
+        String resultString = httpUtils.SendGet(urlString, httpContext);
+        System.out.println(resultString);
+        return null;
+    }
+
     private Long getNowTime() {
         return System.currentTimeMillis() / 1000;
     }

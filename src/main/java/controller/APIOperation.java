@@ -34,6 +34,12 @@ public interface APIOperation {
      */
     List<Get_orders> get_orders() throws IOException;
 
+    /**
+     * @param id 取消的委托ID
+     * @return
+     */
+    Result cancel_order(String id) throws IOException;
+
     Result Order_BookandTAS() throws IOException;
 
     Result sell(String amount, String exprectPrice, String trade_password) throws IOException;
