@@ -47,6 +47,7 @@ public class Real_data {
     private JLabel L33;
     private JButton openTrans;
     private JButton openZN;
+    private JButton wt;
     private ViewContent viewContent;
     private Logger logger = Logger.getLogger(Real_data.class);
 
@@ -57,6 +58,11 @@ public class Real_data {
         openTrans.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new buyAndSell(viewContent);
+            }
+        });
+        wt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new Entrust(viewContent);
             }
         });
     }
@@ -297,10 +303,17 @@ public class Real_data {
         openZN = new JButton();
         openZN.setText("智能操作");
         gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.WEST;
+        content.add(openZN, gbc);
+        wt = new JButton();
+        wt.setText("委托");
+        gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        content.add(openZN, gbc);
+        content.add(wt, gbc);
     }
 
     /**

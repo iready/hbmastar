@@ -1,9 +1,11 @@
 package controller;
 
 import org.apache.http.client.ClientProtocolException;
+import other.entity.api.Get_orders;
 import other.entity.api.Result;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface APIOperation {
     Result buy(String amount, String exprectPrice, String trade_password) throws IOException;
@@ -30,7 +32,7 @@ public interface APIOperation {
      *
      * @return
      */
-    Result get_orders() throws IOException;
+    List<Get_orders> get_orders() throws IOException;
 
     Result Order_BookandTAS() throws IOException;
 

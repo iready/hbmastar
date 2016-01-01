@@ -26,8 +26,6 @@ public class login {
     public login(final ViewContent viewContent) {
         final LoginService loginService = viewContent.getApplicationContext().getBean(LoginService.class);
         final JFrame frame = viewContent.getFrame();
-        System.out.println(frame);
-        System.out.println(username);
         username.setText("13299266512");
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

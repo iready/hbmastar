@@ -36,6 +36,7 @@ public class buyAndSell {
     private JLabel L42;
     private JTextArea textArea1;
     private JScrollPane jsc;
+    private JButton clean;
     private String value[] = new String[5];
 
     public buyAndSell(final ViewContent viewContent) {
@@ -75,7 +76,7 @@ public class buyAndSell {
                 Result result = viewContent.getApiOperation().buyAndSell(value);
                 if (result != null) {
                     Trading trading = ResultProxy.proxy(result, Trading.class, textArea1);
-                    SwingUtils.appendText(textArea1, trading.getResult() + "订单Id为：" + trading.getId());
+                    textArea1.append(trading.getResult() + "订单Id为：" + trading.getId() + "\n");
                 }
             }
         });
@@ -110,6 +111,11 @@ public class buyAndSell {
                 super.focusLost(e);
                 JTextField tf = (JTextField) e.getSource();
                 value[3] = tf.getText();
+            }
+        });
+        clean.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                textArea1.setText("");
             }
         });
     }
@@ -272,10 +278,18 @@ public class buyAndSell {
         gbc.anchor = GridBagConstraints.EAST;
         gbc.fill = GridBagConstraints.VERTICAL;
         content.add(L42, gbc);
+        clean = new JButton();
+        clean.setText("清空");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 8;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        content.add(clean, gbc);
         submit = new JButton();
         submit.setText("确定");
         gbc = new GridBagConstraints();
-        gbc.gridx = 3;
+        gbc.gridx = 4;
         gbc.gridy = 8;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
