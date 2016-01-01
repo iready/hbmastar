@@ -109,8 +109,12 @@ public class APIOperationImpl implements APIOperation {
         return parseJson(resultString, Get_account_info.class);
     }
 
-    public Result get_orders() {
-
+    public Result get_orders() throws IOException {
+        String methodName = "get_orders";
+        CMap cMap = getUsurlCMap(methodName).put("coin_type","1");
+        cMap.put("sign", EncryptUtil.getSign(cMap)).remove("secret_key");
+        String urlString = API_URL + "?" + EncryptUtil.format(cMap);
+        String resultString = httpUtils.SendGet(urlString, httpContext);
         return null;
     }
 

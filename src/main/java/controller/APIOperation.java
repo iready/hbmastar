@@ -30,7 +30,7 @@ public interface APIOperation {
      *
      * @return
      */
-    Result get_orders();
+    Result get_orders() throws IOException;
 
     Result Order_BookandTAS() throws IOException;
 
