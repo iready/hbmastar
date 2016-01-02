@@ -2,9 +2,9 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/controller/ResultProxy.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/other/entity/api/Get_account_info.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/other/entity/api/Trading.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/zyq/huobi/controller/ResultProxy.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/zyq/huobi/other/entity/api/Get_account_info.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/zyq/huobi/other/entity/api/Trading.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
