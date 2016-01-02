@@ -9,11 +9,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 public interface HttpUtils {
-    public String SendGet(String Url, HttpContext httpContext) throws ClientProtocolException, IOException;
+    String SendGet(String Url, HttpContext httpContext) throws IOException;
 
-    public HttpResponse SendGetRes(String Url, HttpContext httpContext) throws ClientProtocolException, IOException;
+    HttpResponse SendGetRes(String Url, HttpContext httpContext) throws IOException;
 
-    public String SendPost(String Url, HttpContext httpContext, Map<String, String> param) throws IOException;
+    String SendPost(String Url, HttpContext httpContext, Map<String, String> param) throws IOException;
 
-    public HttpResponse SendPostRes(String Url, HttpContext httpContext, Map<String, String> param) throws UnsupportedEncodingException, ClientProtocolException, IOException;
+    HttpResponse SendPostRes(String Url, HttpContext httpContext, Map<String, String> param) throws IOException;
 }
