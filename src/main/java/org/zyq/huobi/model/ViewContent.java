@@ -1,7 +1,7 @@
 package org.zyq.huobi.model;
 
-import org.zyq.huobi.controller.APIOperation;
 import org.springframework.context.ApplicationContext;
+import org.zyq.huobi.controller.APIOperation;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -17,7 +17,12 @@ public class ViewContent {
     private APIOperation apiOperation;//操作api
 
     private Map<String, JFrame> jFrameMap = new HashMap<String, JFrame>();//窗口上下文
-//    private Map
+    private DataContent dataContent = new DataContent();//数据上下文
+
+    public DataContent getDataContent() {
+        return dataContent;
+    }
+
 
     public APIOperation getApiOperation() {
         return apiOperation;
