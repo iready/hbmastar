@@ -2,7 +2,7 @@ package org.zyq.huobi.service.impl;
 
 import org.zyq.huobi.model.MyEntity;
 import org.springframework.stereotype.Service;
-import org.zyq.huobi.other.CMap;
+import org.zyq.huobi.model.CMap;
 import org.zyq.huobi.other.bean.Dao;
 import org.zyq.huobi.other.entity.FecUser;
 import org.zyq.huobi.other.entity.Result;

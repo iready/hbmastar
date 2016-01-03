@@ -2,7 +2,7 @@ package org.zyq.huobi.sun;
 
 import org.zyq.huobi.controller.APIOperation;
 import org.zyq.huobi.controller.ResultProxy;
-import org.zyq.huobi.other.entity.ViewContent;
+import org.zyq.huobi.model.ViewContent;
 import org.apache.log4j.Logger;
 import org.zyq.huobi.other.entity.api.Get_account_info;
 import org.zyq.huobi.other.entity.api.Ticker;
@@ -10,7 +10,6 @@ import org.zyq.huobi.other.entity.api.Ticker_btc_json;
 import org.zyq.huobi.other.utils.SwingUtils;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.ScheduledThreadPoolExecutor;

@@ -1,4 +1,4 @@
-package org.zyq.huobi.other.entity;
+package org.zyq.huobi.model;
 
 import org.zyq.huobi.controller.APIOperation;
 import org.springframework.context.ApplicationContext;
@@ -16,7 +16,8 @@ public class ViewContent {
 
     private APIOperation apiOperation;//操作api
 
-    private Map<String, JFrame> jFrameMap = new HashMap<String, JFrame>();//窗口
+    private Map<String, JFrame> jFrameMap = new HashMap<String, JFrame>();//窗口上下文
+//    private Map
 
     public APIOperation getApiOperation() {
         return apiOperation;

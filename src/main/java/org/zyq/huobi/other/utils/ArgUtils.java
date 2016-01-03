@@ -3,7 +3,7 @@ package org.zyq.huobi.other.utils;
 /**
  * Created by Yuquan Zou on 2015/12/27.
  */
-public class Arg {
+public class ArgUtils {
     /**
      * 检验是否为数字
      *

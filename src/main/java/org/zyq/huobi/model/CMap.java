@@ -1,4 +1,4 @@
-package org.zyq.huobi.other;
+package org.zyq.huobi.model;
 
 import java.util.TreeMap;
 

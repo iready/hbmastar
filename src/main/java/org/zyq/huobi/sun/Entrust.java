@@ -3,7 +3,7 @@ package org.zyq.huobi.sun;
 import org.zyq.huobi.controller.APIOperation;
 import org.zyq.huobi.model.view.tabel.EntrustModel;
 import org.zyq.huobi.model.view.tabel.operaCancle;
-import org.zyq.huobi.other.entity.ViewContent;
+import org.zyq.huobi.model.ViewContent;
 import org.zyq.huobi.other.entity.api.Get_orders;
 import org.zyq.huobi.other.utils.SwingUtils;
 
@@ -28,36 +28,40 @@ public class Entrust {
         JFrame jFrame = new JFrame("委托");
         api = viewContent.getApiOperation();
         jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        init();
         jFrame.setContentPane(this.content);
         SwingUtils.window_centered(jFrame);
         jFrame.setVisible(true);
-        refresh.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    List<Get_orders> list = api.get_orders();
-                    EntrustModel model = (EntrustModel) entable.getModel();
-                    model.setDataVector(data_handle(list), headers);
-                    operaCancle operaCancle = new operaCancle(api);
-                    entable.getColumnModel().getColumn(5).setCellEditor(operaCancle);
-                    entable.getColumnModel().getColumn(5).setCellRenderer(operaCancle);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
+
+    private void init() {
         headers = new String[]{"id", "类型", "委托价格", "委托数量", "委托时间", "委托操作"};
         try {
             entable.setModel(new EntrustModel(data_handle(api.get_orders()), headers));
             operaCancle operaCancle = new operaCancle(api);
             entable.getColumnModel().getColumn(5).setCellEditor(operaCancle);
             entable.getColumnModel().getColumn(5).setCellRenderer(operaCancle);
+            refresh.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        List<Get_orders> list = api.get_orders();
+                        EntrustModel model = (EntrustModel) entable.getModel();
+                        model.setDataVector(data_handle(list), headers);
+                        operaCancle operaCancle = new operaCancle(api);
+                        entable.getColumnModel().getColumn(5).setCellEditor(operaCancle);
+                        entable.getColumnModel().getColumn(5).setCellRenderer(operaCancle);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 
     private Object[][] data_handle(List<Get_orders> orderses) {

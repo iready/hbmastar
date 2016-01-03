@@ -1,6 +1,6 @@
 package org.zyq.huobi.controller;
 
-import org.zyq.huobi.other.entity.ViewContent;
+import org.zyq.huobi.model.ViewContent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.zyq.huobi.other.utils.SwingUtils;

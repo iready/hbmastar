@@ -1,14 +1,13 @@
 package org.zyq.huobi.sun;
 
 import org.zyq.huobi.controller.APIOperation;
-import org.zyq.huobi.other.entity.ViewContent;
+import org.zyq.huobi.model.ViewContent;
 import org.zyq.huobi.other.entity.FecUser;
 import org.zyq.huobi.other.entity.Result;
 import org.zyq.huobi.other.utils.SwingUtils;
 import org.zyq.huobi.service.LoginService;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;

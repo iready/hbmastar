@@ -10,11 +10,11 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.zyq.huobi.other.CMap;
+import org.zyq.huobi.model.CMap;
 import org.zyq.huobi.other.entity.FecUser;
 import org.zyq.huobi.other.entity.api.*;
 import org.zyq.huobi.other.entity.api.OrderBookandTAS.BTC_CNY;
-import org.zyq.huobi.other.utils.Arg;
+import org.zyq.huobi.other.utils.ArgUtils;
 import org.zyq.huobi.other.utils.EncryptUtil;
 
 import javax.annotation.Resource;
@@ -70,7 +70,7 @@ public class APIOperationImpl implements APIOperation {
      * @return
      */
     public Result buyAndSell(String[] config) {
-        if (Arg.numBetween(config[0], 0, 101) && Arg.numBetween(config[1], -1, 2) && Arg.numBetween(config[2], -1, 2)) {
+        if (ArgUtils.numBetween(config[0], 0, 101) && ArgUtils.numBetween(config[1], -1, 2) && ArgUtils.numBetween(config[2], -1, 2)) {
 //计算数量
             try {
                 BigDecimal persent = new BigDecimal(config[0]).divide(new BigDecimal(100));

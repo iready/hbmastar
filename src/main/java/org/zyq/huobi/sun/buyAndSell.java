@@ -1,13 +1,12 @@
 package org.zyq.huobi.sun;
 
 import org.zyq.huobi.controller.ResultProxy;
-import org.zyq.huobi.other.entity.ViewContent;
+import org.zyq.huobi.model.ViewContent;
 import org.zyq.huobi.other.entity.api.Result;
 import org.zyq.huobi.other.entity.api.Trading;
 import org.zyq.huobi.other.utils.SwingUtils;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
