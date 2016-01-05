@@ -10,6 +10,10 @@ public class LimiteList<E> extends ArrayList<E> {
 
     private int initialCapacity;
 
+    public int getInitialCapacity() {
+        return initialCapacity;
+    }
+
     public LimiteList(int initialCapacity) {
         super(initialCapacity);
         this.initialCapacity = initialCapacity;

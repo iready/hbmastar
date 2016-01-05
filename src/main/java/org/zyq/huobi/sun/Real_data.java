@@ -1,9 +1,10 @@
 package org.zyq.huobi.sun;
 
+import org.apache.log4j.Logger;
 import org.zyq.huobi.controller.APIOperation;
 import org.zyq.huobi.controller.ResultProxy;
+import org.zyq.huobi.model.DataContent;
 import org.zyq.huobi.model.ViewContent;
-import org.apache.log4j.Logger;
 import org.zyq.huobi.other.entity.api.Get_account_info;
 import org.zyq.huobi.other.entity.api.Ticker;
 import org.zyq.huobi.other.entity.api.Ticker_btc_json;
@@ -86,6 +87,10 @@ public class Real_data {
                     srr[6] = gai.getFrozen_btc_display();
                     srr[7] = ticker.getLast();
                     srr[8] = gai.getNet_asset();
+                    DataContent dataContent = viewContent.getDataContent();
+                    dataContent.getTen().add(srr[7]);
+                    dataContent.analysis();
+                    System.out.println(dataContent);
                     for (int i = 0; i < srr.length; i++) {
                         SwingUtils.label_update_text(jrr[i], srr[i]);
                     }
